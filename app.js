@@ -2,17 +2,19 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var morgan = require('morgan');
 var decoder = require('polish-vehicle-registration-certificate-decoder');
 var bodyParser = require('body-parser');
 var http = require('http');
 var app = express();
-
+var fs = require('fs');
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'express-anti-bot.log'), { flags: 'a' });
+// setup the logger
+app.use(morgan(':remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms', { stream: accessLogStream }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -21,8 +23,6 @@ app.use(bodyParser.json({ type: 'application/json' }));
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.post('/api/car/aztec', (req, res) => {
-
-  // console.log(req.body.aztec);
 
   var aztec = new decoder.PolishVehicleRegistrationCertificateDecoder(req.body.aztec).data;
 
@@ -33,7 +33,6 @@ app.post('/api/car/aztec', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({aztec, error: null}));
   }
-
 });
 
 // catch 404 and forward to error handler
@@ -46,7 +45,6 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   if(req.header('content-type') !== 'application/json') {
     res.send({'error': 500, 'message': 'Ustaw Nagłówek Content-Type na application/json', 'type': 'invalid_content_type'});
   } else if(err.message === 'Index out of range') {

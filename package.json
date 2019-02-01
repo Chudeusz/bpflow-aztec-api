@@ -1,7 +1,7 @@
 {
-  "name": "bpflow-aztec-api",
+  "name": "node-js-getting-started",
   "version": "0.3.0",
-  "description": "BPFlow-Aztec-API",
+  "description": "A sample Node.js app using Express 4",
   "engines": {
     "node": "10.x"
   },
@@ -15,8 +15,10 @@
     "debug": "~2.6.9",
     "ejs": "^2.5.6",
     "express": "~4.16.0",
+    "fs": "0.0.1-security",
     "http": "0.0.0",
     "http-errors": "~1.6.2",
+    "log4js": "^4.0.1",
     "morgan": "~1.9.0",
     "polish-vehicle-registration-certificate-decoder": "^0.4.1",
     "pug": "2.0.0-beta11"

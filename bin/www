@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 
 /**
  * Module dependencies.
@@ -12,7 +12,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '80');
+var port = normalizePort(process.env.PORT || '9293');
 app.set('port', port);
 
 /**
@@ -82,7 +82,7 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = '127.0.0.1';
+  var addr = '77.55.220.234';
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;

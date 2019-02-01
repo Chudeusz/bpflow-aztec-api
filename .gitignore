@@ -10,7 +10,3 @@ npm-debug.log
 # Docker
 Dockerfile
 docker-compose.yml
-/.idea/*
-.idea/encodings.xml
-.idea/misc.xml
-.idea/
