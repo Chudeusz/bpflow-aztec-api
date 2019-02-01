@@ -9,19 +9,13 @@ var http = require('http');
 var app = express();
 var fs = require('fs');
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'express-anti-bot.log'), { flags: 'a' });
-// setup the logger
-app.use(morgan(':remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms', { stream: accessLogStream }));
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.use(morgan('[:date[clf]] :remote-addr :remote-user :method :url :status - :response-time ms', { stream: accessLogStream }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json({ type: 'application/json' }));
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 app.post('/api/car/aztec', (req, res) => {
 
   var aztec = new decoder.PolishVehicleRegistrationCertificateDecoder(req.body.aztec).data;
