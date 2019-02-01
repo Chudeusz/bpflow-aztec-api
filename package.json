@@ -1,14 +1,16 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "bpflow-aztec-api",
+  "version": "1.2.4",
+  "description": "BPFlow Aztec API",
   "engines": {
     "node": "10.x"
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
+    "startLinuxDev": "screen -S api nodemon bin/www",
+    "startLinux": "screen node bin/www",
+    "startWindowsDev": "nodemon bin/www",
+    "startWindows": "node bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -20,20 +22,14 @@
     "http-errors": "~1.6.2",
     "log4js": "^4.0.1",
     "morgan": "~1.9.0",
-    "polish-vehicle-registration-certificate-decoder": "^0.4.1",
-    "pug": "2.0.0-beta11"
+    "polish-vehicle-registration-certificate-decoder": "^0.4.1"
   },
   "devDependencies": {
     "request": "^2.81.0",
     "tape": "^4.7.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
-  },
   "keywords": [
     "node",
-    "heroku",
     "express"
   ],
   "license": "MIT"
